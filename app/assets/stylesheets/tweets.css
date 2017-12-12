@@ -1,0 +1,38 @@
+.search-div {
+  position: relative;
+  left: 5%;
+  width: 90%;
+}
+
+.text-field-div {
+  width: 80%;
+  display: inline-block;
+}
+
+.raised-button {
+  margin: 12px;
+}
+
+.raised-button-div {
+  position: relative;
+  display: inline-block;
+}
+
+.main-div {
+  position: relative;
+  left: 3%;
+  width: 94%;
+}
+
+.result-div {
+  padding: 7px;
+}
+
+.hashtags-set {
+  padding: 5px;
+  margin: 5px;
+}
+
+.hashtag-div {
+  padding-left: 10px;
+}

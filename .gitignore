@@ -13,3 +13,8 @@
 # Ignore database.yml and secrets.yml
 /config/database.yml
 /config/secrets.yml
+
+# JS packs
+/public/packs
+/public/packs-test
+/node_modules
