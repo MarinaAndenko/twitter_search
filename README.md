@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+For starting this app you need the next:
 
-Things you may want to cover:
+* ruby version 2.3.1
+* rails version 5.0.6 
+* npm version >= 5.0
+* node version >= 6.0
+* yarn version >= 0.25
 
-* Ruby version
+After clonning repo run:
 
-* System dependencies
+* bundle
+* npm i
 
-* Configuration
+For integration with Twitter API you need to create app here https://apps.twitter.com/app/new
+And add consumer_key, consumer_secret, access_token and access_token_secret to secrets.yml like shown in secrets.yml.dist
 
-* Database creation
+For starting server run:
+* server s
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+NOTE: for twitter queries on page use ordinary twitter standart serach operators https://developer.twitter.com/en/docs/tweets/search/guides/standard-operators
