@@ -7,7 +7,10 @@ class TweetsController < ApplicationController
       @results = twitter.return_results
       @hashtags = twitter.find_hashtags
 
-      render json: { results: @results, hashtags: @hashtags }
+      respond_to do |format|
+        format.html
+        format.json { render json: { results: @results, hashtags: @hashtags } }
+      end
     end
   end
 

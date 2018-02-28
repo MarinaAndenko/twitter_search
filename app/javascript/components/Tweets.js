@@ -28,15 +28,19 @@ class Tweets extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: [],
-      hashtags: {},
+      results: this.props.results,
+      hashtags: this.props.hashtags,
       resultType: null,
       query: '',
     };
   }
 
   fetchData = (resultType = this.state.resultType, query = this.state.query) => {
-    $.get( '/search', { query: query, result_type: resultType },
+    let url = new URL(window.location.href);
+
+    history.pushState(this.state, 'title', url + '?query=' + query);
+
+    $.get( '/search.json', { query: query, result_type: resultType },
     function(data) {
       this.setState({
         results: data.results,
@@ -87,10 +91,11 @@ class Tweets extends React.Component {
     let i = 0, resultsArr = [];
 
     this.state.results.map((result) => {
+      let decoratedText = result.text.replace(/#hacker/ig, "<b>#hacker</b>");
       resultsArr.push(
         <div key={'result' + i}>
           <div className='result-div'>
-            <b>@{ result.user_name }</b> { result.text }
+            <b>@{ result.user_name }</b> <span dangerouslySetInnerHTML={{ __html: decoratedText }}></span>
           </div>
           <Divider />
         </div>
