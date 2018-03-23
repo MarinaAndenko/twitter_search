@@ -35,10 +35,18 @@ class Tweets extends React.Component {
     };
   }
 
-  fetchData = (resultType = this.state.resultType, query = this.state.query) => {
-    let url = new URL(window.location.href);
+  decorateUrl = (query, resultType) => {
+    let url = new URL(window.location.href.split('?')[0]);
+    let params = new URLSearchParams(url.search.slice(1));
 
-    history.pushState(this.state, 'title', url + '?query=' + query);
+    if(query) params.set('query', query);
+    if(resultType) params.set('result_type', resultType);
+
+    history.pushState(this.state, document.title, url + '?' + params);
+  }
+
+  fetchData = (resultType = this.state.resultType, query = this.state.query) => {
+    this.decorateUrl(query, resultType);
 
     $.get( '/search.json', { query: query, result_type: resultType },
     function(data) {
@@ -53,7 +61,7 @@ class Tweets extends React.Component {
     this.setState({ query: value });
   }
 
-  handleKeyDown =(e) => {
+  handleKeyDown = (e) => {
     if (e.keyCode === enterKey) this.fetchData();
   }
 
