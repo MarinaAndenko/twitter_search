@@ -30,14 +30,18 @@ class Tweets extends React.Component {
     this.state = {
       results: this.props.results,
       hashtags: this.props.hashtags,
-      resultType: null,
-      query: '',
+      resultType: this.urlParams().get('resultType'),
+      query: this.urlParams().get('query') || '',
     };
+  }
+
+  urlParams = () => {
+    return new URLSearchParams(new URL(window.location.href).search.slice(1));
   }
 
   decorateUrl = (query, resultType) => {
     let url = new URL(window.location.href.split('?')[0]);
-    let params = new URLSearchParams(url.search.slice(1));
+    let params = this.urlParams();
 
     if(query) params.set('query', query);
     if(resultType) params.set('result_type', resultType);
@@ -124,6 +128,7 @@ class Tweets extends React.Component {
               <TextField 
                 hintText="What you want to know?.." hintStyle={materialStyles.textField}
                 fullWidth={true} onChange={this.handleChange} onKeyDown={this.handleKeyDown}
+                value={this.state.query}
               />
             </div>
             <div className='raised-button-div'>
